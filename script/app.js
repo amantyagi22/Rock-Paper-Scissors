@@ -1,8 +1,8 @@
-const userScore = 0;
-const computerScore = 0;
+let userScore = 0;
+let computerScore = 0;
 const userScore_span = document.getElementById("user-score");
 const computerScore_span = document.getElementById("computer-score");
-const result_div = document.querySelector(".result");
+const result_p = document.querySelector(".result > p");
 const scoreBoard_div = document.querySelector(".score-board");
 const rock_div = document.getElementById("r");
 const paper_div = document.getElementById("p");
@@ -13,23 +13,52 @@ function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3);
   return choices[randomNumber];
 }
+
+function win(userChoice) {
+  userScore++;
+  userScore_span.innerHTML = userScore;
+  computerScore_span.innerHTML = computerScore;
+  result_p.innerHTML = "User beats Computer. You win!";
+  document.getElementById(userChoice).classList.add("green-glow");
+  setTimeout(function () {
+    document.getElementById(userChoice).classList.remove("green-glow");
+  }, 300);
+}
+
+function lose(userChoice) {
+  computerScore++;
+  computerScore_span.innerHTML = computerScore;
+  result_p.innerHTML = "Computer beats User. You lose!";
+  document.getElementById(userChoice).classList.add("red-glow");
+  setTimeout(function () {
+    document.getElementById(userChoice).classList.remove("red-glow");
+  }, 300);
+}
+function draw(userChoice) {
+  result_p.innerHTML = "It's a draw";
+  document.getElementById(userChoice).classList.add("gray-glow");
+  setTimeout(function () {
+    document.getElementById(userChoice).classList.remove("gray-glow");
+  }, 300);
+}
+
 function game(userChoice) {
   const comptuerChoice = getComputerChoice();
   switch (userChoice + comptuerChoice) {
     case "rs":
     case "pr":
     case "sp":
-      console.log("USER WINS");
+      win(userChoice);
       break;
     case "rp":
     case "ps":
     case "sr":
-      console.log("USER LOses");
+      lose(userChoice);
       break;
     case "rr":
     case "pp":
     case "ss":
-      console.log("Its a draw");
+      draw(userChoice);
       break;
   }
 }

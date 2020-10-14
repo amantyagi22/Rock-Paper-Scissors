@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   font-family: "Segoe UI";
-
   box-sizing: border-box;
 }
 body {
@@ -11,7 +10,6 @@ body {
 header {
   background: white;
 }
-
 header > h1 {
   color: #25272e;
   text-align: center;
@@ -75,4 +73,13 @@ header > h1 {
   font-weight: bold;
   font-size: 20px;
   margin-top: 20px;
+}
+.green-glow {
+  border: 3px solid green;
+}
+.red-glow {
+  border: 3px solid red;
+}
+.gray-glow {
+  border: 3px solid gray;
 }
